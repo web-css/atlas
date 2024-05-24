@@ -234,11 +234,21 @@
         .el-collapse-item__arrow.is-active {
             transform: rotate(270deg);
         }
+
+        .page-title {
+            padding-bottom: 10px;
+            text-align: center;
+            font-size: 18px;
+            line-height: 40px;
+            font-weight: bold;
+            color: #fff;
+        }
     </style>
 </head>
 
 <body>
     <div id="app">
+        <h2 class="page-title">北京儿童医学心身医学疾病谱</h2>
         <el-collapse v-model="activeNames" class="list">
             <el-collapse-item v-for="item in list" ::key="item.title" :title="item.title" :name="item.title">
                 <div v-for="child in item.children" ::key="child.title" class="child">
