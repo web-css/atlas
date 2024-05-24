@@ -111,7 +111,7 @@
             --el-collapse-header-font-size: 14px;
             --el-collapse-content-bg-color: transparent;
             --el-collapse-content-font-size: 14px;
-            --el-collapse-content-text-color: #333;
+            --el-collapse-content-text-color: #000;
             border-top: 1px solid #fff;
             border-bottom: 1px solid #fff;
         }
@@ -126,12 +126,14 @@
         .table th {
             position: relative;
             width: 48px;
-            padding: 12px 0;
+            padding: 8px 0;
             background-color: #fff;
             border-right: 1px solid #E5E5E5;
             box-sizing: border-box;
             text-align: center;
             vertical-align: middle;
+            font-size: 14px;
+            line-height: 20px;
         }
 
         .table td {
@@ -257,7 +259,7 @@
                         <tr class="three">
                             <th>排<br>除<br>病<br>因</th>
                             <td>
-                                <p v-for="exclude in child.exclude" class="content">{{exclude}}</p>
+                                <p v-for="exclude in child.exclude.filter(item => item)" class="content">{{exclude}}</p>
                                 <p v-if="!child.exclude[0]">暂无</p>
                             </td>
                         </tr>
