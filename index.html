@@ -163,7 +163,6 @@
             content: '';
             position: absolute;
             left: 0;
-            top: -1px;
             bottom: 0;
             width: 2px;
         }
@@ -180,15 +179,18 @@
         }
 
         .table .one th::before {
+            top: 0;
             background-color: #ed8c83;
         }
 
         .table .two th::before {
+            top: -1px;
             background-color: #f9b38f;
             z-index: 12;
         }
 
         .table .three th::before {
+            top: -1px;
             background-color: #8aadef;
         }
 
