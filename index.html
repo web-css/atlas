@@ -109,22 +109,30 @@
 
         .table {
             width: 100%;
-            border: 1px solid #D4D7DE;
+            border: 1px solid #f5f5f5;
             border-collapse: collapse;
         }
 
         .table th {
+            position: relative;
             width: 48px;
             padding: 12px 0;
-            border: 1px solid #D4D7DE;
+            background-color: #fff;
+            border-right: 1px solid #f5f5f5;
             box-sizing: border-box;
             text-align: center;
             vertical-align: middle;
         }
 
         .table td {
+            position: relative;
             padding: 12px 12px 4px;
-            border: 1px solid #D4D7DE;
+            background-color: #fff;
+        }
+
+        .table .two td,
+        .table .two th {
+            border: 1px solid #f5f5f5;
         }
 
         .title {
@@ -132,11 +140,72 @@
             line-height: 40px;
         }
 
-        .child-title {
-            padding: 12px 0;
-            font-size: 15px;
+        .child {
+            margin-bottom: 12px;
+            padding: 0 8px 8px;
+            background-color: #f5f5f5;
+        }
+
+        .child:last-child {
+            margin-bottom: 0;
+        }
+
+        .table .child-title {
+            height: 40px;
+            padding: 0;
+            background-color: #f5f5f5;
+            font-size: 14px;
             font-weight: bold;
-            line-height: 24px;
+            text-align: center;
+        }
+
+        .table th::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: -1px;
+            bottom: 0;
+            width: 2px;
+        }
+
+        .table td::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 8px 8px 0;
+        }
+
+        .table .one th::before {
+            background-color: #ed8c83;
+        }
+
+        .table .two th::before {
+            background-color: #f9b38f;
+            z-index: 12;
+        }
+
+        .table .three th::before {
+            background-color: #8aadef;
+        }
+
+        .table .one td::before {
+            border-color: transparent #ed8c83 transparent transparent;
+        }
+
+        .table .two td::before {
+            border-color: transparent #f9b38f transparent transparent;
+        }
+
+        .table .three td::before {
+            border-color: transparent #8aadef transparent transparent;
+        }
+
+        .table .child-title::before {
+            display: none;
         }
 
         p {
@@ -151,21 +220,23 @@
         <el-collapse v-model="activeNames" class="list">
             <el-collapse-item v-for="item in list" ::key="item.title" :title="item.title" :name="item.title">
                 <div v-for="child in item.children" ::key="child.title" class="child">
-                    <h4 class="child-title">{{child.title}}</h4>
                     <table class="table">
                         <tr>
+                            <th class="child-title" colspan="2">{{child.title}}</th>
+                        </tr>
+                        <tr class="one">
                             <th>主<br>要<br>症<br>状</th>
                             <td>
                                 <p v-for="main in child.main">{{main}}</p>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="two">
                             <th>伴<br>随<br>症<br>状</th>
                             <td>
                                 <p v-for="follow in child.follow">{{follow}}</p>
                             </td>
                         </tr>
-                        <tr>
+                        <tr class="three">
                             <th>排<br>除<br>病<br>因</th>
                             <td>
                                 <p v-for="exclude in child.exclude">{{exclude}}</p>
@@ -190,8 +261,6 @@
                 }
             },
             methods: {
-
-
             }
         }
 
